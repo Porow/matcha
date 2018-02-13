@@ -1,0 +1,140 @@
+{% extends 'templates/layout.twig' %}
+
+{% block content %}
+    {% if auth is null %}
+        <header class="header" id="header">
+            <div class="navigation" id="navigation">
+                <div class="navigation-logo">
+                    <img class="logo" src="{{ baseUrl }}/design/images/logo.png">
+                </div>
+                <nav class="navigation-items">
+                    <h1 class="trn" onclick="app.slideClick('swipez')">Swipez</h1>
+                    <h1 class="trn" onclick="app.slideClick('matchez')">Matchez</h1>
+                    <h1 class="trn" onclick="app.slideClick('chat')">Discutez</h1>
+                </nav>
+            </div>
+            <div class="close" id="close">
+                <img id="c-img" src="https://tinder.com/static/build/23e9830fbce5c5fde7158849ae6d99e0.svg" alt="">
+            </div>
+            <div class="flags" id="flags" onclick="app.switchCountry(this)">
+                <img id="f-country" src="" width="32">
+            </div>
+        </header>
+        <div class="login-screen" id="login-screen">
+            <div id="choice-box">
+                <button class="btn btn-facebook b-radius" onclick="app.LoginFB()">
+                    <span class="trn">Connexion avec Facebook</span>
+                </button>
+                <button class="btn btn-user b-radius" id="btn-login">
+                    <span class="trn">Connexion avec mon compte</span>
+                </button>
+            </div>
+            <div id="form-login">
+                <form action="{{ path_for('index') }}" method="post" autocomplete="off">
+                    <label for="identifiant"><span class="trn">Votre identifiant</span></label>
+                    <input type="text" name="identifiant" id="identifiant" value="{{ old.identifiant }}" placeholder="Ex: Marie,Julien.." required>
+
+                    <label for="password"><span class="trn">Votre mot de passe</span></label>
+                    <input type="password" name="password" id="password" value="{{ old.password }}" placeholder="*******" required>
+
+                    <input type="hidden" name="login">
+                    <div class="options">
+                        <label>
+                            <input type="checkbox">
+                            <span class="trn">Se souvenir de moi</span>
+                        </label>
+                        <div></div>
+                        <a href="">
+                            <span class="trn">J'ai oublié mon mot de passe</span>
+                        </a>
+                    </div>
+                    <button type="submit" class="btn btn-red b-radius" id="submit"><span class="trn">Connexion</span></button>
+                </form>
+            </div>
+            <div id="form-register">
+                <form action="{{ path_for('index') }}" method="post" autocomplete="off">
+                    <label for="identifiant"><span class="trn">Votre identifiant</span></label>
+                    {% if old.identifiant-register is defined %}
+                        <input type="text" name="identifiant-register" id="identifiant-register" value="{{ old.identifiant-register }}" placeholder="Ex: Marie,Julien.." required>
+                    {% else %}
+                        <input type="text" name="identifiant-register" id="identifiant-register" placeholder="Ex: Marie,Julien.." required>
+                    {% endif %}
+                    <label for="email"><span class="trn">Votre adresse e-mail</span></label>
+                    {% if old.email-register is defined %}
+                        <input type="email" name="email-register" id="email-register" value="{{ old.email-register }}" placeholder="Ex: julien@gmail.com" required>
+                    {% else %}
+                        <input type="email" name="email-register" id="email-register" placeholder="Ex: julien@gmail.com" required>
+                    {% endif %}
+                    <label for="password"><span class="trn">Votre mot de passe</span></label>
+                    <input type="password" name="password-register" id="password-register" class="security" value="{{ old.password }}" placeholder="*******" required>
+
+                <label for="birthday"><span class="trn">Votre date de naissance</span></label>
+                {% if old.birthday-register is defined %}
+                    <input type="date" name="birthday-register" id="birthday-register" value="{{ old.birthday-register }}" required>
+                {% else %}
+                    <input type="date" name="birthday-register" id="birthday-register" required>
+                {% endif %}
+                <input type="hidden" name="register">
+                <label>
+                    <input type="checkbox" id="cgu">
+                    <span class="trn">J'approuve être majeur et avoir lu les</span> <a href="">GCU</a>.
+                </label>
+                <button type="submit" class="btn btn-red b-radius" id="submit-register"><span class="trn">S'inscrire</span></button>
+            </form>
+        </div>
+    </div>
+    <div class="main-frame" id="main-frame">
+        <h1 class="title">
+            Match<span class="title-letter">a</span>
+        </h1>
+        <p class="slogan">
+            <span class="trn">Partez à la conquête de votre âme soeur</span>
+        </p>
+        <a href="" class="btn btn-red b-radius" id="btn-register">
+            <span class="trn">S'inscrire</span>
+        </a>
+        <button class="btn btn-red b-radius" id="v-res">
+            <span class="trn">Connexion</span>
+        </button>
+        <p></p>
+        <span class="copyright">
+            <span class="trn">Propulsé par</span> <img src="{{ baseUrl }}/design/images/42.svg" alt="" width="24">
+        </span>
+    </div>
+    <section id="swipez" class="swipez">
+        <img src="{{ baseUrl }}/design/images/swipe.png" alt="">
+        <div>
+            <h2>
+                <span class="trn">Si une personne vous plait, swipez vers la droite.</span>
+                    <br> <span class="trn">Sinon swipez vers la gauche. C'est aussi simple que ça.</span>
+            </h2>
+        </div>
+    </section>
+    <section id="matchez" class="matchez">
+        <h3>
+            <span class="trn">Trouvez aujourd'hui la personne avec qui vous serez demain.</span>
+            <br><br> <span class="trn">Ou ce soir.</span>
+        </h3>
+    </section>
+    <section id="chat" class="chattez">
+        <h3>
+            Discutez autant que vous le voulez.
+            <br> <br> Une fois que vous avez matché.
+        </h3>
+        <div class="msg-container pv4 ph4 br3 center bg-white shadow-6">
+            <div class="msg-content w-100 relative">
+                <div id="msg1" class="msg-receive dib mb4 bg-message br4 pv2 ph3 white measure-narrow">Bonjour Hubert de la Batte. Et alors, ce ski ?</div>
+                <div id="msg2" class="msg-send dib mb4 bg-near-white br4 pv2 ph3 mid-gray measure-narrow">Très bien, je vous remercie. Et vous, vous allez bien?  </div>
+                <div id="msg3" class="msg-receive dib mb4 bg-message br4 pv2 ph3 white measure-narrow">Comme un lundi.</div>
+                <div id="msg4" class="msg-send dib mb4 bg-near-white br4 pv2 ph3 mid-gray measure-narrow">Elle est pas mal celle-là, j'aime bien.</div>
+                <div id="msg5" class="msg-receive dib mb4 bg-message br4 pv2 ph3 white measure-narrow">Shut up ! Kiss my ass.</div>
+                <div id="msg6" class="msg-send dib mb4 bg-near-white br4 pv2 ph3 mid-gray measure-narrow">D'accord, faisons ça, ravi de t'avoir revu l'ami.</div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% if auth is defined %}
+
+
+    {% endif %}
+{% endblock %}

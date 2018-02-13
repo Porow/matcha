@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Matcha | {% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ baseUrl }}/design/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{ baseUrl }}/design/css/fontawesome-all.min.css">
+		<link rel="stylesheet" href="{{ baseUrl }}/design/css/animate.min.css">
+		<link rel="stylesheet" href="{{ baseUrl }}/design/css/proxima.min.css">
+        <link rel="stylesheet" href="{{ baseUrl }}/design/css/app.css">
+		<link rel="icon" type="image/png" href="{{ baseUrl }}/design/images/favicon.png" />
+	</head>
+	<body>
+		{% block cookies %}{% endblock %}
+		{% if flash is defined %}
+			{% if flash.errors is defined %}
+				{% set session_type = "errors" %}
+			{% else %}
+				{% set session_type = "success" %}
+			{% endif %}
+			<div class="flash flash-{{ session_type }}">
+				{% if flash is iterable and flash.errors is defined %}
+					{% for flash_message in flash[session_type] %}
+						{{ flash_message|first }}
+					{% endfor %}
+                    <i class="fas fa-times"></i>
+				{% else %}
+					{{ flash[session_type]|first }}
+                    <i class="fas fa-check"></i>
+				{% endif %}
+			</div>
+		{% endif %}
+		<div class="cookies" id="cookies">
+			<div></div>
+			<div class="texte">
+                <span class="trn">Afin de vous proposer un site Internet optimal et de l'améliorer continuellement, nous utilisons des cookies. En poursuivant votre utilisation du site Internet, vous acceptez l'utilisation de cookies.</span>
+			</div>
+			<button class="btn-cookies" id="btn-cookies">
+				<i class="fa fa-check"></i>
+			</button>
+		</div>
+        {% block content %}{% endblock %}
+		<button onclick="app.goTop()" id="goToTop" class="goTop">
+			<i class="fa fa-2x fa-angle-up"></i>
+		</button>
+		<footer>
+			<div>© fciprian & calba | <span class="trn">Tous droits réser<a target="_blank" href="https://www.youtube.com/watch?v=kmNDxBsQM7k">v</a>és</span>.</div>
+			<div><i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+			<div></div>
+		</footer>
+		<script src="{{ baseUrl }}/design/js/jquery.min.js"></script>
+		<script src="{{ baseUrl }}/design/js/jquery.translate.js"></script>
+		<script src="{{ baseUrl }}/design/js/cookies.js"></script>
+		<script src="{{ baseUrl }}/design/js/geolocalisation.js"></script>
+		<script src="{{ baseUrl }}/design/js/app.js"></script>
+	</body>
+</html>

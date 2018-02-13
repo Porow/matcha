@@ -1,0 +1,128 @@
+{% extends "templates/layout.twig" %}
+
+{% block content %}
+
+    <header class="header-profile">
+        <div>
+            <a href="{{ path_for('logout') }}" class="logout">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+        <div>
+            <a class="alert-users" id="alert-users">
+                <i class="fas fa-bell"></i>
+                <span id="count-alerts" class="counting">0</span>
+            </a>
+        </div>
+        <div class="flags" id="flags" onclick="app.switchCountry(this)">
+            <img id="f-country" src="" width="32">
+        </div>
+    </header>
+
+    <div class="banner">
+        <a href="{{ path_for('me') }}">
+            {% if myself.profile_picture %}
+                <img src="{{ myself.profile_picture }}" tile="{{ myself.firstname }} {{ myself.lastname }}">
+            {% else %}
+                {% if myself.gender == "m" %}
+                    <img src="{{ baseUrl }}/design/images/users/boys_default.png" tile="{{ myself.firstname }} {{ myself.lastname }}">
+                {% else %}
+                    <img src="{{ baseUrl }}/design/images/users/girls_default.jpg" title="{{ myself.firstname }} {{ myself.lastname }}">
+                {% endif %}
+            {% endif %}
+        </a>
+        <span>
+            {{ vues }} <span class="trn">vues</span>
+        </span>
+    </div>
+
+    <div class="container">
+        {% if missing %}
+            <form id="update-missing">
+                <label for="name"><span class="trn">Nom, prénom</span></label>
+                {% if myself.firstname %}
+                    <input type="text" id="name" name="name" value="{{ myself.firstname }} {{ myself.lastname }}" disabled>
+                {% else %}
+                    <input type="text" id="name" name="name" placeholder="Ex: Julien Boston">
+                {% endif %}
+                <label for="gender"><span class="trn">Sexe</span></label>
+                {% if myself.gender %}
+                    <input type="text" id="gender" name="gender" value="{{ myself.gender }}" disabled>
+                {% else %}
+                    <select name="gender" id="gender">
+                        <option value="m">
+                            Je suis un garçon
+                        </option>
+                        <option value="f">
+                            Je suis une fille
+                        </option>
+                    </select>
+                {% endif %}
+                <label for="orientation"><span class="trn">Je préfère</span></label>
+                {% if myself.orientation == "boys" or myself.orientation == "girls" or myself.orientation == "be" %}
+                    {% if myself.orientation == "boys" %}
+                        {% set orientation = "Les garçons" %}
+                    {% endif %}
+                    {% if myself.orientation == "girls" %}
+                        {% set orientation = "Les filles" %}
+                    {% endif %}
+                    {% if myself.orientation == "be" %}
+                        {% set orientation = "Les deux" %}
+                    {% endif %}
+                    <input type="text" id="orientation" name="orientation" value="{{ orientation }}" disabled>
+                {% else %}
+                    <select name="orientation" id="orientation">
+                        <option value="boys">
+                            <span class="trn">Les garçons</span>
+                        </option>
+                        <option value="girls">
+                            <span class="trn">Les filles</span>
+                        </option>
+                        <option value="be">
+                            <span class="trn">Les deux</span>
+                        </option>
+                    </select>
+                {% endif %}
+                <label for="tags"><span class="trn">Ce qui m'intéresse</span></label>
+                {% if myself.tags %}
+                    <input type="text" id="tags" name="tags" value="{{ myself.tags }}" disabled>
+                {% else %}
+                    <input type="text" id="tags" name="tags" placeholder="Ex: #music, #series, #sports">
+                {% endif %}
+                {% if myself.profile_picture is empty %}
+                    <label for="profile_picture"><span class="trn">Ma photo de profil</span></label>
+                    <input type="file" id="profile_picture" name="profile_picture">
+                {% endif %}
+                <label for="relationship"><span class="trn">Ma situation</span></label>
+                {% if myself.relationship %}
+                    {% if myself.relationship == "Single" %}
+                        {% set relationship = "Célibataire" %}
+                    {% else %}
+                        {% set relationship = "En couple" %}
+                    {% endif %}
+                    <input type="text" id="relationship" name="relationship" value="{{ relationship }}" disabled>
+                {% else %}
+                    <select name="relationship" id="relationship">
+                        <option value="single">
+                            <span class="trn">Célibataire</span>
+                        </option>
+                        <option value="duo">
+                            <span class="trn">En couple</span>
+                        </option>
+                    </select>
+                {% endif %}
+                <label for="biography"><span class="trn">Décrivez-vous</span></label>
+                {% if myself.biography %}
+                    <input type="text" id="biography" name="biography" value="{{ myself.biography }}" disabled>
+                {% else %}
+                    <input type="text" id="biography" name="biography" placeholder="Ex: I love travel">
+                {% endif %}
+                <button id="submit-missing" class="btn btn-red">
+                    <span class="trn">Enregister</span>
+                </button>
+            </form>
+        {% endif %}
+    </div>
+
+
+{% endblock content %}

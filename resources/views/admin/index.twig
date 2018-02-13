@@ -1,0 +1,372 @@
+{% extends 'templates/layout.twig' %}
+
+{% block content %}
+    <div style="overflow: hidden">
+        <div class="notifications" id="notifications"></div>
+        <header class="header-admin">
+            <div class="close" id="close">
+                <img id="c-img" src="https://tinder.com/static/build/23e9830fbce5c5fde7158849ae6d99e0.svg" alt="">
+            </div>
+            <div></div>
+            <div class="flags" id="flags" onclick="app.switchCountry(this)">
+                <img id="f-country" src="" width="32">
+            </div>
+        </header>
+        <div class="navigation-admin" id="navigation-admin">
+            <h2 class="title-admin">
+                Administration
+            </h2>
+            <ul>
+                <li>
+                    <ul id="nav">
+                        <li id="users">
+                            <a href="#">
+                                <span class="trn">Gestion des utilisateurs</span>
+                                <i class="fas fa-users"></i>
+                            </a>
+                        </li>
+                        <li id="stats" class="hover">
+                            <a href="#">
+                                <span class="trn">Statistiques</span>
+                                <i class="fas fa-chart-pie"></i>
+                            </a>
+                        </li>
+                        <li id="reports">
+                            <a href="#">
+                                <span class="trn">Signalements</span>
+                                <i class="fas fa-exclamation"></i>
+                                <span class="new">3</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="copyright">
+                <span class="trn">Proposé par</span> <img src="{{ baseUrl }}/design/images/42.svg" alt="" width="24">
+            </p>
+            <a href="{{ path_for('logout') }}">
+                <button class="btn btn-pink">
+                    <span class="trn">Déconnexion</span>
+                    <i class="fas fa-power-off"></i>
+                </button>
+            </a>
+        </div>
+        <div class="main-container">
+            <section id="users" class="s-users">
+                <div id="user" class="">
+
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th onclick="app.sortTable(0, 'users', 'int')">
+                            <i class="fas fa-hashtag">
+                        </th>
+                        <th onclick="app.sortTable(1, 'users', 'length')">
+                            Identifiant
+                        </th>
+                        <th>
+                            Adresse e-mail
+                        </th>
+                        <th onclick="app.sortTable(3, 'users', 'int', 'ascii')">
+                            Sexe
+                        </th>
+                        <th onclick="app.sortTable(4, 'users', 'length')">
+                            Nom, Prénom
+                        </th>
+                        <th onclick="app.sortTable(5, 'users', 'int')">
+                            Score
+                        </th>
+                        <th onclick="app.sortTable(6, 'users', 'int', 'status')">
+                            Status
+                        </th>
+                        <th onclick="app.sortTable(7, 'users', 'int')">
+                            Age
+                        </th>
+                        <th onclick="app.sortTable(8, 'users', 'date')">
+                            Date d'inscription
+                        </th>
+                    </tr>
+                    </thead>
+                    {% if users is not empty %}
+                        <tbody>
+                            {% for key, user in users %}
+                                <tr id="user-{{ key }}">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.identifiant }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        <span id="ascii" style="visibility: hidden">{{ user.gender }}</span>
+                                        {% if user.gender == "M" %}
+                                            <i class="fas fa-mars" style="color: #74b9ff;"></i>
+                                        {% else %}
+                                            <i class="fas fa-venus" style="color: #fd79a8;"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ user.firstname }} {{ user.lastname }}</td>
+                                    <td>{{ user.rating }}</td>
+                                    <td>
+                                        <span id="status" style="visibility: hidden">{{ user.status }}</span>
+                                        {% if user.status %}
+                                            <img src="{{ baseUrl }}/design/images/ping-check.png" width="24">
+                                        {% else %}
+                                            <img src="{{ baseUrl }}/design/images/ping-default.png" width="24">
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ user.age }}</td>
+                                    <td>{{ user.created_at }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <span class="trn">Pas d'utilisateurs pour le moment</span>
+                        </div>
+                    {% endif %}
+                </table>
+                <div class="pagination" id="pagination">
+
+                </div>
+            </section>
+            <section class="s-stats" id="stats">
+                <div class="one">
+                    <div>
+                        <h2>
+                            <span class="trn">Nombres d'utilisateurs</span>
+                            <i class="fas fa-users"></i>
+                        </h2>
+                        {{ nbUsers }}
+                    </div>
+                    <div>
+                        <h2>
+                            <span class="trn">Utilisateurs connectés</span>
+                            <img src="{{ baseUrl }}/design/images/ping-check.png">
+                        </h2>
+                        {{ usersOnline }}
+                    </div>
+                    <div>
+                        <h2>
+                            <span class="trn">Nombres de match</span>
+                            <i class="fas fa-heart" style="color: #ef5777"></i>
+                        </h2>
+                        0
+                    </div>
+                    <div>
+                        <h2>
+                            <span class="trn">Signalements</span>
+                            <i class="fas fa-exclamation" style="color: #ff4d4d"></i>
+                        </h2>
+                        0
+                    </div>
+                </div>
+                <div class="graph">
+                    <div>
+                        <div id="chart">
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="chart">
+                            <canvas id="myChart2" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="reports" class="s-reports">
+                <div class="report" id="reported">
+                    <div>
+                        <span id="header">
+
+                        </span>
+                        <span id="content">
+                            <span class="profile" id="profileTarget"></span>
+                            <ul>
+                                <li>
+                                    <b id="name"></b>, <b id="age"></b> ans, <span class="trn">de</span> <b id="pos">Paris</b>
+                                </li>
+                                <span class="trn">inscrit(e) depuis le</span> <b id="register"></b> <i class="far fa-calendar"></i>
+                            </ul>
+                            <p id="description">
+                                <b>Description</b>
+                                <br>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut consequuntur deleniti dolorum eveniet exercitationem facere mollitia pariatur suscipit veniam. Aut eaque eveniet fugiat, ipsum maiores quaerat reiciendis similique voluptatibus.
+                                <br>
+                                <small id="at"></small>
+                            </p>
+                        </span>
+                    </div>
+                    <div>
+                        <span id="target-header"></span>
+                        <span class="profile" id="profile"></span>
+                        <ul>
+                            <li>
+                                <b id="nameTarget"></b>, <b id="ageTarget"></b> ans, <span class="trn">de</span> <b id="posTarget">Paris</b>
+                            </li>
+                            <span class="trn">inscrit(e) depuis le</span> <b id="registerTarget"></b> <i class="far fa-calendar"></i>
+                            <li>
+                                Nombre de signalements : <b id="nbReports"></b>
+                            </li>
+                            <li id="login">
+                                Dernière connexion : <b id="last-connection"></b>
+                            </li>
+                            <li>
+                                Status : <b id="status-target"></b>
+                            </li>
+                        </ul>
+                        <span id="btn">
+                            <button type="button" class="btn btn-yellow" id="suspendre">
+                                <span class="trn">Suspendre l'utilisateur</span>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </span>
+                        <button type="button" class="btn btn-pink" id="remove_punishment">
+                            <span class="trn">Retirer la suspenssion</span>
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <i class="fas fa-hashtag">
+                            </th>
+                            <th>
+                                Identifiant
+                            </th>
+                            <th>
+                                <span class="trn">Cible</span>
+                            </th>
+                            <th onclick="app.sortTable(2, 'reports')">
+                                <span class="trn">Catégorie</span>
+                            </th>
+                            <th onclick="app.sortTable(3, 'reports')">
+                                Status
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                        </tr>
+                    </thead>
+                    {% if reports is not empty %}
+                        <tbody>
+                            {% for key, report in reports %}
+                                <tr id="report-{{ key }}">
+                                    <td>{{ report.id }}</td>
+                                    <td>{{ report.user_id }}</td>
+                                    <td>{{ report.user_target }}</td>
+                                    <td><span class="trn">{{ report.category }}</span></td>
+                                    <td>
+                                        <span class="trn">{{ report.status }}</span>
+                                        {% if report.status == "En cours" %}
+                                            <img src="{{ baseUrl }}/design/images/ping-warning.png" width="24">
+                                        {% else %}
+                                            <img src="{{ baseUrl }}/design/images/ping-check.png" width="24">
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ report.create_at }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <span class="trn">Pas de signalement pour le moment</span>
+                            <i class="far fa-thumbs-up"></i>
+                        </div>
+                    {% endif %}
+                </table>
+            </section>
+        </div>
+    </div>
+    <script src="{{ baseUrl }}/design/js/chart.min.js"></script>
+    <script>
+
+        var people = {
+            datasets: [{
+                data: [{{ nbGuys }}, {{ nbGirls }}],
+                backgroundColor: [
+                    "#4bcffa",
+                    "#ef5777"
+                ],
+                hoverBackgroundColor: [
+                    "#0fbcf9",
+                    "#f53b57"
+                ]
+            }],
+
+            labels: [
+                'Garçons',
+                'Filles'
+            ]
+        };
+
+        var ages = {
+            datasets: [{
+                data: [{{ ageMoy.0 }}, {{ ageMoy.1 }}, {{ ageMoy.2 }}],
+                backgroundColor: [
+                    "#6a89cc",
+                    "#f6b93b",
+                    "#c4e538"
+                ],
+                hoverBackgroundColor: [
+                    "#4a69bd",
+                    "#fa983a",
+                    "#A3CB38"
+                ]
+            }],
+
+            labels: [
+                '18-21 ans',
+                '21-25 ans',
+                '25+ ans'
+            ]
+        };
+
+        var ctx = document.getElementById("myChart");
+        var ctx2 = document.getElementById("myChart2");
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: people,
+            options: {
+                tooltips: {
+                    mode: 'dataset',
+                },
+                legend: {
+                    onHover: function(e) {
+                        e.target.style.cursor = 'pointer';
+                    }
+                },
+                hover: {
+                    onHover: function(e) {
+                        var point = this.getElementAtEvent(e);
+                        if (point.length) e.target.style.cursor = 'pointer';
+                        else e.target.style.cursor = 'default';
+                    }
+                }
+            }
+        });
+        var myPieChart = new Chart(ctx2, {
+            type: 'pie',
+            data: ages,
+            options: {
+                tooltips: {
+                    mode: 'dataset',
+                },
+                legend: {
+                    onHover: function(e) {
+                        e.target.style.cursor = 'pointer';
+                    }
+                },
+                hover: {
+                    onHover: function(e) {
+                        var point = this.getElementAtEvent(e);
+                        if (point.length) e.target.style.cursor = 'pointer';
+                        else e.target.style.cursor = 'default';
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}
