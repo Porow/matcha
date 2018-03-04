@@ -1,0 +1,127 @@
+{% extends 'templates/layout.twig' %}
+{% block title %}Swipez.{% endblock %}
+{% block content %}
+    <header class="header" id="header">
+        <div class="navigation" id="navigation">
+            <div class="navigation-logo">
+                <img class="logo" src="{{ baseUrl }}/design/images/logo.png">
+            </div>
+            <nav class="navigation-items">
+                <h1 class="trn">Index</h1>
+                <h1 class="trn">Profil</h1>
+                <h1 class="trn">Messages</h1>
+            </nav>
+        </div>
+        <div class="close" id="close">
+            <img id="c-img" src="https://tinder.com/static/build/23e9830fbce5c5fde7158849ae6d99e0.svg" alt="">
+        </div>
+        <div class="flags" id="flags" onclick="app.switchCountry(this)">
+            <img id="f-country" src="" width="32">
+        </div>
+    </header>
+
+    <div id="load" class="load">
+        <div class="img" style="background-image:url(https://i.pinimg.com/originals/f9/2f/ae/f92faef70df491c43f9dbed1aa244c70.jpg);background-size:cover;background-position: left;height: 100px;width: 100px;border-radius: 100px;">
+        </div>
+    </div>
+
+    <div class="ntmfranfran">
+        <div id="select" class="selection collapse">
+            <div id="pannel" class="selection_pannel collapse">
+                <h1 class="trn">Je recherche...</h1>
+                <select>
+                    <option value="Homme">Homme</option>
+                    <option value="Femme">Femme</option>
+                    <option value="Femme & Homme">Les deux</option>
+                </select>
+                <hr>
+                <h1 class="trn">Entre</h1>
+                <input type="text" id="range_age" value="" name="range_age" />
+                <hr>
+                <h1 class="trn">Dans un rayon de</h1>
+                <input type="text" id="range_distance" value="" name="range_distance" />
+                <br><button id="pannel_search" class="btn btn-red b-radius">Rechercher</button>
+            </div>
+        </div>
+        <div id='tinder' class="match loading-end">
+            <div class="tinder">
+                    <div class="tinder--status">
+                        <i class="fa fa-times"></i>
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="tinder--cards">
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/001.jpg">
+                            <h3>Sabrina, 21</h3>
+                            <p>L’art, le vin, netflix</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/002.jpg">
+                            <h3>Virginie, 18</h3>
+                            <p>Looking for boyfriend or just some good friends (not in that way ya nastyy)</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/003.jpg">
+                            <h3>Marine, 22</h3>
+                            <p>La photographie, Les tatouages&Les Voyages 🙏</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/004.jpg">
+                            <h3>Élodie, 19</h3>
+                            <p>La Franco-Gabonaise n'a jamais eu de (potentiel) prince ... aussi novice soit elle elle cherche celui qui lui apportera sa pantoufle de verre ...</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/006.jpg">
+                            <h3>Charlotte, 19</h3>
+                            <p>Assez drôle et sympathique.. Préférant les relations avec de la complicité et de la taquinerie c'est plus sympa ! Faites preuve d'imagination plutôt que le traditionnel "coucou ça va?</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/007.jpg">
+                            <h3>Mélodie, 19</h3>
+                            <p>Je suis sportive, j'aime m'amuser avec mes amis et l'équitation est ma plus grande passion 😉
+                            </p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/008.jpg">
+                            <h3>Anaïs, 19</h3>
+                            <p>Je suis ici pour rencontrer des personnes et tout simplement parler 😊</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/009.jpg">
+                            <h3>Julie, 19</h3>
+                            <p>Je suis une fille passionné, pleine d'énergie, complètement taré mais gentille 😉
+                            </p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/010.jpg">
+                            <h3>Clémentine, 19</h3>
+                            <p> Viens parler ! Sérieux ou bien de nouvelle rencontre. 1m78.</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/011.jpg">
+                            <h3>Marie, 19</h3>
+                            <p>J'ai envie d'être un sims
+                                <br>J’adore les sushis !!!!!🍣🍣🍣🍣🍣🍣🍱
+                                <br>J’ai un chat noir ( ya une photo de lui sur mon profil ) <3
+                                <br>Et j’adore Halloween et les choses en rapport et qui font peeeeeeeuuuurrrrrrrrrrrr
+                                <br>Bouhhh fantôme 👻 citrouille 🎃 mdrrrrrrrrrrrrr je suis dans un autre monde
+                                <br>J’ai jms eut de fleurs ;( 🥀🥀🥀
+                                <br>Jsuis la meilleure d’abord</p>
+                        </div>
+                        <div class="tinder--card">
+                            <img src="{{ baseUrl }}/users/012.jpg">
+                            <h3>Louanne, 19</h3>
+                            <p>On dira qu’on s’est rencontrés au cinéma</p>
+                        </div>
+
+                    </div>
+                    <div class="tinder--buttons">
+                        <button id="nope" data-key="37" title="Nope" class="fa fa-times"></button>
+                        <button id="minimize_pannel" class="minimize_pannel fa fa-sliders-h" title="Filtres"></button>
+                        <button id="love" data-key="39" class="fa fa-heart" title="Like"></button>
+                        <i class="fas fa-exclamation-circle" style="display: none"></i>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}

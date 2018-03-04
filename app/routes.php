@@ -7,3 +7,5 @@
     $app->get('/admin', \App\Controllers\AdminController::class . ":admin")->setName('admin');
 
     $app->get('/logout', \App\Controllers\Auth\AuthController::class . ":logout")->setName('logout');
+
+    $app->get('/matchs', \App\Controllers\MatchController::class . ":match")->setName('match');

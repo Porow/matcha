@@ -1051,4 +1051,34 @@ app.ready(function(){
             ev.preventDefault();
         });
     }
+    if (currentPath == "/matchs")
+    {
+        document.body.style.backgroundColor = "#f1f1f1";
+
+        setTimeout(function(){
+           $('#load').addClass('loaded tinder');
+        }, 5000);
+
+        $('#tinder').removeClass('loading-end');
+
+        $('#minimize_pannel').click(function () {
+            $("#pannel").slideToggle(400);
+            $("#select").toggleClass("selection-toggle");
+            $("#nope").toggleClass("tinder--buttons--deactivated");
+            $("#nope").toggle('active');
+            $("#love").toggleClass("tinder--buttons--deactivated");
+            $("#love").toggle('active');
+            $('#tinder').toggle('active');
+        });
+
+        $('#pannel_search').click(function () {
+            $("#pannel").slideToggle(400);
+            $("#select").toggleClass("selection-toggle");
+            $("#nope").toggleClass("tinder--buttons--deactivated");
+            $("#nope").toggle('active');
+            $("#love").toggleClass("tinder--buttons--deactivated");
+            $("#love").toggle('active');
+            $('#tinder').toggle('active');
+        });
+    }
 });
