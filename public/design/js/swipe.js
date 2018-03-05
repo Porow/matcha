@@ -5,6 +5,8 @@ var allCards = document.querySelectorAll('.tinder--card');
 var nope = document.getElementById('nope');
 var love = document.getElementById('love');
 var dailylikes = 0;
+var match = 1;
+var matched = 1;
 
 //Displaying cards and refreshing display after likes or dislikes
 function initCards(card, index) {
@@ -21,12 +23,15 @@ function initCards(card, index) {
         app.slideClick('nope');
     }, 120);
     tinderContainer.classList.add('loaded');
-    if (dailylikes >= 5)
+    if (dailylikes >= 20)
         love.className += " tinder-not-allowed";
+    if (matched == 1){
+        $("#modal-manager").toggle();}
 }
 setTimeout(function(){
     initCards();
     $('#tinder').toggleClass("tinder-appear");
+    match = 0;
 }, 3350);
 
 //Animation
@@ -60,8 +65,11 @@ function moving(el) {
         var moveOutWidth = document.body.clientWidth;
         var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
 
-        if (dailylikes < 5 || event.deltaX < 0)
+        if (dailylikes < 20 || event.deltaX < 0){
             event.target.classList.toggle('removed', !keep);
+            setTimeout(function(){
+                event.target.classList.toggle('tinder--card--removed', !keep);
+            }, 475);}
         else {
             alert('Vous avez épuisé votre nombre de likes pour aujourd\'hui.');
         }
@@ -96,7 +104,7 @@ function createButtonListener(love) {
 
         if (love) {
             dailylikes += 1;
-            if (dailylikes > 5)
+            if (dailylikes > 20)
             {
                 alert('Vous avez épuisé votre nombre de likes pour aujourd\'hui.');
                 return;
@@ -106,6 +114,9 @@ function createButtonListener(love) {
                 tinderContainer.classList.toggle('tinder_love');
             }, 475);
             card.classList.add('removed');
+            setTimeout(function(){
+                card.classList.toggle('tinder--card--removed');
+            }, 475);
 
             card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
             initCards();
@@ -115,6 +126,9 @@ function createButtonListener(love) {
                 tinderContainer.classList.toggle('tinder_nope');
             }, 475);
             card.classList.add('removed');
+            setTimeout(function(){
+                card.classList.toggle('tinder--card--removed');
+            }, 475);
             card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
             initCards();
         }
@@ -139,11 +153,17 @@ function createKeyListener(love) {
             setTimeout(function(){
                 tinderContainer.classList.toggle('tinder_love');
             }, 475);
+            setTimeout(function(){
+                card.classList.toggle('tinder--card--removed');
+            }, 475);
             card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
         } else {
             tinderContainer.classList.toggle('tinder_nope');
             setTimeout(function(){
                 tinderContainer.classList.toggle('tinder_nope');
+            }, 475);
+            setTimeout(function(){
+                card.classList.toggle('tinder--card--removed');
             }, 475);
             card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
         }
@@ -161,8 +181,8 @@ love.addEventListener('click', loveListener);
 
 //catching keys press
 $('body').bind('keyup', function (ev) {
-    if (ev.keyCode === 39 && !$('#love').hasClass('tinder--buttons--deactivated')) {
-        if (dailylikes < 5)
+    if (ev.keyCode === 39 && !$('#love').hasClass('tinder--buttons--deactivated') && match === 0) {
+        if (dailylikes < 20)
         {
             dailylikes += 1;
             createKeyListener(true);
@@ -170,9 +190,9 @@ $('body').bind('keyup', function (ev) {
         else
             alert('Vous avez épuisé votre nombre de likes pour aujourd\'hui.');
     }
-    if (ev.keyCode === 37 && !$('#nope').hasClass('tinder--buttons--deactivated'))
+    if (ev.keyCode === 37 && !$('#nope').hasClass('tinder--buttons--deactivated') && match === 0)
         createKeyListener(false);
-    if (ev.keyCode === 38)
+    if (ev.keyCode === 38 && match === 0)
     {
         $("#pannel").slideToggle(400);
         $("#select").toggleClass("selection-toggle");
@@ -191,3 +211,7 @@ window.addEventListener("keydown", function(e) {
         e.preventDefault();
     }
 }, false);
+
+$('#card-pic').on('click', function() {
+   alert('ntm');
+});

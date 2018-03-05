@@ -16,6 +16,13 @@ $header_height: 96px
 
 @import url("https://fonts.googleapis.com/css?family=Lobster|Open+Sans|Pacifico")
 
+@font-face
+  font-family: "Proxima Nova"
+  src: url("../webfonts/proxima-nova.svg") format('svg')
+  src: local('Proxima Nova')
+  src: url("../webfonts/proxima-nova.eot") format('eot')
+  src: url("../webfonts/proxima-nova.woff") format('woff')
+
 /* Reset
  * reset css of HTML5 attributes (body, label, input, p...)
  */
@@ -1283,7 +1290,6 @@ footer i
 
 .selection
   position: absolute
-  z-index: 3
   display: none
   height: 70vh
   width: 100%
@@ -1292,20 +1298,19 @@ footer i
 
 .selection-toggle
   display: flex
-  z-index: 3
+  z-index: 11
 
 .selection_pannel
   bottom: 0
   z-index: 3
   justify-content: center
   align-items: center
-  padding: 50px
   width: 90vw
   max-width: 400px
   height: 70vh
   background: #FFFFFF
   border: 20px #424242 simple
-  padding-bottom: 40px
+  padding: 50px 50px 40px
   border-radius: 8px
   position: absolute
   will-change: transform
@@ -1342,8 +1347,8 @@ footer i
     margin: 0
 
 .tinder
-  width: 100vw
-  height: 100vh
+  width: 90vw
+  height: 90vh
   margin-bottom: 50px
   overflow: hidden
   display: flex
@@ -1373,6 +1378,9 @@ footer i
     position: absolute
     width: 100px
     margin-left: -50px
+
+.card-pic
+  opacity: 1
 
 .tinder_love .fa-heart, .tinder_nope .fa-times
   opacity: 0.9
@@ -1407,6 +1415,9 @@ footer i
   cursor: -moz-grab
   cursor: grab
 
+.tinder--card--removed
+  display: none!important
+
 .moving.tinder--card
   transition: none
   cursor: -webkit-grabbing
@@ -1430,6 +1441,10 @@ footer i
     font-size: 16px
     padding: 0 16px
     pointer-events: none
+  h1
+    font-family: "Proxima Nova Alt"
+  label
+    float: none
 
 .tinder--buttons
   flex: 0 0 100px
@@ -1475,6 +1490,49 @@ footer i
   font-size: 24px
   color: #ff1b2f !important
   cursor: pointer
+
+@keyframes animOpening
+  0%
+    transform: scale3d(.5,.5,.5)
+    opacity: 0
+
+    to
+      transform: none
+      opacity: 1
+
+.modalManager
+  overflow: none
+  display: none
+  z-index: 20
+  justify-content: center
+  align-items: center
+  position: fixed
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  background-color: rgba(0,0,0,.68)
+
+.display-modal
+  display: flex!important
+
+.modalContent
+  animation: .25s ease 0s 1 normal forwards animOpening
+  text-align: center
+  overflow: hidden
+  max-width: 392px
+  background-color: #fff
+  padding: 50px
+  border-radius: 8px
+
+.match_pic
+  margin-bottom: 40px
+  margin-top: 20px
+  background-size: cover
+  background-position: left
+  height: 100px
+  width: 100px
+  border-radius: 100px
 
 .pagination
   margin-top: -5px
@@ -1797,12 +1855,11 @@ footer i
   position: absolute
   display: flex
   bottom: 0
-  /* background-image: url(https://pbs.twimg.com/media/Cog5lu4UsAEELOs.jpg); */
-  left: 0
+  left: 5vw
   z-index: -1
   right: 0
   height: 88.2vh
-  width: 100vw
+  width: 90vw
   justify-content: center
   align-items: center
 
@@ -1821,6 +1878,13 @@ footer i
   &:before
     z-index: -200
     animation: inner-ripple 2000ms linear infinite
+
+.load-bg
+  background-size: cover
+  background-position: left
+  height: 100px
+  width: 100px
+  border-radius: 100px
 
 @media (max-width: 985px)
   .load

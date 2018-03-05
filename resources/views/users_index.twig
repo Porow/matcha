@@ -21,7 +21,7 @@
     </header>
 
     <div id="load" class="load">
-        <div class="img" style="background-image:url(https://i.pinimg.com/originals/f9/2f/ae/f92faef70df491c43f9dbed1aa244c70.jpg);background-size:cover;background-position: left;height: 100px;width: 100px;border-radius: 100px;">
+        <div class="img load-bg" style="background-image:url({{ baseUrl }}/design/images/my_avatar.jpg);">
         </div>
     </div>
 
@@ -43,6 +43,29 @@
                 <br><button id="pannel_search" class="btn btn-red b-radius">Rechercher</button>
             </div>
         </div>
+        <div class="modal-manager" id="modal-manager">
+            <div class="modalManager" id="modalManager">
+                <div class="modalContent" id="contentModal">
+                    <h1>Félicitations... ?</h1>
+                    <p>Vous avez aimé Virginie... Et elle aussi !</p>
+                    <img class="match_pic" src="{{ baseUrl }}/users/002.jpg">
+                    <br><button href="#" id="send-message" class="btn btn-red b-radius">Lui envoyer un message</button>
+                    <button id="back-to-swipe" class="btn btn-red b-radius">Fermer</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-manager" id="modal-manager">
+            <div class="modalManager" id="modalManager">
+                <div class="modalContent" id="contentModal-profile">
+                    <h1>Virginie, 18</h1>
+                    <label>5 kilomètres</label>
+                    <p>Looking for boyfriend or just some good friends (not in that way ya nastyy)</p>
+                    <img class="match_pic" src="{{ baseUrl }}/users/002.jpg">
+                    <br><button href="#" id="send-message" class="btn btn-red b-radius">Lui envoyer un message</button>
+                    <button id="back-to-swipe" class="btn btn-red b-radius">Fermer</button>
+                </div>
+            </div>
+        </div>
         <div id='tinder' class="match loading-end">
             <div class="tinder">
                     <div class="tinder--status">
@@ -51,55 +74,75 @@
                     </div>
                     <div class="tinder--cards">
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/001.jpg">
+                            <img id="card-pic" src="{{ baseUrl }}/users/001.jpg">
                             <h3>Sabrina, 21</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>3 kilomètres</label>
                             <p>L’art, le vin, netflix</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/002.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/002.jpg">
                             <h3>Virginie, 18</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>5 kilomètres</label>
                             <p>Looking for boyfriend or just some good friends (not in that way ya nastyy)</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/003.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/003.jpg">
                             <h3>Marine, 22</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>2 kilomètres</label>
                             <p>La photographie, Les tatouages&Les Voyages 🙏</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/004.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/004.jpg">
                             <h3>Élodie, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>27 kilomètres</label>
                             <p>La Franco-Gabonaise n'a jamais eu de (potentiel) prince ... aussi novice soit elle elle cherche celui qui lui apportera sa pantoufle de verre ...</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/006.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/006.jpg">
                             <h3>Charlotte, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>5 kilomètres</label>
                             <p>Assez drôle et sympathique.. Préférant les relations avec de la complicité et de la taquinerie c'est plus sympa ! Faites preuve d'imagination plutôt que le traditionnel "coucou ça va?</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/007.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/007.jpg">
                             <h3>Mélodie, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>3 kilomètres</label>
                             <p>Je suis sportive, j'aime m'amuser avec mes amis et l'équitation est ma plus grande passion 😉
                             </p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/008.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/008.jpg">
                             <h3>Anaïs, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>8 kilomètres</label>
                             <p>Je suis ici pour rencontrer des personnes et tout simplement parler 😊</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/009.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/009.jpg">
                             <h3>Julie, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>5 kilomètres</label>
                             <p>Je suis une fille passionné, pleine d'énergie, complètement taré mais gentille 😉
                             </p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/010.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/010.jpg">
                             <h3>Clémentine, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>15 kilomètres</label>
                             <p> Viens parler ! Sérieux ou bien de nouvelle rencontre. 1m78.</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/011.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/011.jpg">
                             <h3>Marie, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>29 kilomètres</label>
                             <p>J'ai envie d'être un sims
                                 <br>J’adore les sushis !!!!!🍣🍣🍣🍣🍣🍣🍱
                                 <br>J’ai un chat noir ( ya une photo de lui sur mon profil ) <3
@@ -109,8 +152,10 @@
                                 <br>Jsuis la meilleure d’abord</p>
                         </div>
                         <div class="tinder--card">
-                            <img src="{{ baseUrl }}/users/012.jpg">
+                            <img class="card-pic" src="{{ baseUrl }}/users/012.jpg">
                             <h3>Louanne, 19</h3>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <label>2 kilomètres</label>
                             <p>On dira qu’on s’est rencontrés au cinéma</p>
                         </div>
 
