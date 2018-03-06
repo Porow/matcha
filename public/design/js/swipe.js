@@ -65,7 +65,7 @@ function moving(el) {
         var moveOutWidth = document.body.clientWidth;
         var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
 
-        if (dailylikes < 20 || event.deltaX < 0){
+        if (dailylikes < 5 || event.deltaX < 0){
             event.target.classList.toggle('removed', !keep);
             setTimeout(function(){
                 event.target.classList.toggle('tinder--card--removed', !keep);
@@ -104,7 +104,7 @@ function createButtonListener(love) {
 
         if (love) {
             dailylikes += 1;
-            if (dailylikes > 20)
+            if (dailylikes > 5)
             {
                 alert('Vous avez épuisé votre nombre de likes pour aujourd\'hui.');
                 return;
@@ -182,7 +182,7 @@ love.addEventListener('click', loveListener);
 //catching keys press
 $('body').bind('keyup', function (ev) {
     if (ev.keyCode === 39 && !$('#love').hasClass('tinder--buttons--deactivated') && match === 0) {
-        if (dailylikes < 20)
+        if (dailylikes < 5)
         {
             dailylikes += 1;
             createKeyListener(true);
