@@ -1,0 +1,24 @@
+{% extends 'templates/layout.twig' %}
+{% block title %}Mes messages.{% endblock %}
+{% block content %}
+    <header class="header" id="header">
+        <div class="navigation" id="navigation">
+            <div class="navigation-logo">
+                <img class="logo" src="{{ baseUrl }}/design/images/logo.png">
+            </div>
+            <nav class="navigation-items">
+                <h1 class="trn">Index</h1>
+                <h1 class="trn">Profil</h1>
+                <h1 class="trn">Messages</h1>
+            </nav>
+        </div>
+        <div class="close" id="close">
+            <img id="c-img" src="https://tinder.com/static/build/23e9830fbce5c5fde7158849ae6d99e0.svg" alt="">
+        </div>
+        <div class="flags" id="flags" onclick="app.switchCountry(this)">
+            <img id="f-country" src="" width="32">
+        </div>
+        <div></div>
+    </header>
+
+   {% endblock %}

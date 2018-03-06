@@ -2523,7 +2523,7 @@ app.ready(function(){
             ev.preventDefault();
         });
     }
-    if (currentPath == "/matchs")
+    if (currentPath == "/swipe")
     {
         document.body.style.backgroundColor = "#f1f1f1";
 

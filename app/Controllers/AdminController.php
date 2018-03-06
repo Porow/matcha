@@ -111,6 +111,6 @@ class AdminController  extends Controller
                 exit(false);
         }
 
-        return ($this->view->render($response, 'admin/users_index.twig'));
+        return ($this->view->render($response, 'admin/swipe.twig'));
     }
 }

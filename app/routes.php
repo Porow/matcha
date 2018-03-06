@@ -8,4 +8,6 @@
 
     $app->get('/logout', \App\Controllers\Auth\AuthController::class . ":logout")->setName('logout');
 
-    $app->get('/matchs', \App\Controllers\MatchController::class . ":match")->setName('match');
+    $app->get('/swipe', \App\Controllers\SwipeController::class . ":swipe")->setName('swipe');
+
+    $app->get('/messages', \App\Controllers\MessagesController::class . ":messages")->setName('messages');
