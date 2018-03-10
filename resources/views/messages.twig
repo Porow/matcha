@@ -7,7 +7,7 @@
                 <img class="logo" src="{{ baseUrl }}/design/images/logo.png">
             </div>
             <nav class="navigation-items">
-                <h1 class="trn">Index</h1>
+                <h1 href="localhost:8888/swipe" class="trn">Index</h1>
                 <h1 class="trn">Profil</h1>
                 <h1 class="trn">Messages</h1>
             </nav>
@@ -23,7 +23,7 @@
     <div class="msg-container">
         <div class="users-list">
             <ul>
-                <li class="message-box"><img class="users-list-pics" src="{{ baseUrl }}/users/002.jpg">
+                <li class="message-box-current"><img class="users-list-pics" src="{{ baseUrl }}/users/002.jpg">
                     <h1>Virginie</h1>
                     <p>Ah c'est sûr qu'avec tes 5 en maths c'est compliqué 😂 En web tu fais quoi du coup? De gentil petit codage en HTML et CSS pour faire de jolies pages internet ? 😂<br>Je trouve ça grave sympa comme système, tu sens que tu progresses avec ça ! Alors que nous on est là avec nos moyennes à la con, avec des partiels où on triche pour pas avoir à passer aux rattrapages</p>
                 </li><hr class="no-spc-mgn">
@@ -69,8 +69,17 @@
                 <button id="btn" tabindex="-1" class="send-msg-btn">Envoyer</button>
             </form>
         </div>
-            <div class="user-profile">
-                <img class="user-profile-img" src="{{ baseUrl }}/users/002.jpg">
+    <div class="user-profile">
+        <div id="slider">
+            <a href="#" class="control_next"></a>
+            <a href="#" class="control_prev"></a>
+            <ul id="easyPaginate">
+                <li><img class="user-profile-img" src="{{ baseUrl }}/users/002.jpg"></li>
+                <li><img class="user-profile-img" src="{{ baseUrl }}/users/001.jpg"></li>
+                <li><img class="user-profile-img" src="{{ baseUrl }}/users/004.jpg"></li>
+                <li><img class="user-profile-img" src="{{ baseUrl }}/users/008.jpg"></li>
+            </ul>
+        </div>
                 <h1 class="profile-title">Virginie, 18</h1>
                 <i class="fa fa-map-marker-alt"></i>
                 <label>3 kilomètres</label>
