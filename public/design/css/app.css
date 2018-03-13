@@ -1494,7 +1494,7 @@ footer i {
 
 .users-list {
   max-width: 20vw;
-  height: 90vh;
+  height: calc(100vh - 97px);
   overflow: scroll;
   overflow-x: hidden;
   background: linear-gradient(120deg, #F1F1F1 75%, #FFF 100%);
@@ -1512,7 +1512,7 @@ footer i {
     padding: 20px; }
 
 .center-div {
-  height: 80vh;
+  height: calc(100vh - 97px);
   top: 0;
   flex-grow: 1000; }
 
@@ -1549,7 +1549,7 @@ footer i {
 .chat-box {
   overflow: hidden;
   overflow-y: auto;
-  height: 81vh;
+  height: calc(100vh - 25vh);
   display: flex;
   flex-direction: row; }
 
@@ -1560,7 +1560,7 @@ footer i {
   padding: 2rem;
   transition: 0.5s;
   min-width: 0px;
-  width: 50vw;
+  width: 45vw;
   color: #757575; }
 
 .send-msg-btn {
@@ -1589,7 +1589,7 @@ footer i {
   transition: 0.3s;
   margin: 10px;
   margin-left: auto;
-  padding: 0.8vw;
+  padding: 10px;
   border-radius: 50px;
   border-bottom-right-radius: 15px;
   color: #FFFFFF;
@@ -1616,7 +1616,7 @@ footer i {
   right: 0;
   flex-grow: 0;
   max-width: 20vw;
-  height: 90vh;
+  height: calc(100vh - 96px);
   border-left: 1px solid #dddddd;
   overflow: hidden;
   overflow-y: auto; }
@@ -1640,6 +1640,20 @@ footer i {
 
 .profile-title {
   padding: 20px; }
+
+.report-user {
+  display: flex;
+  width: 100%;
+  align-items: stretch; }
+  .report-user button {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    transition: 0.2s;
+    max-width: 200px; }
+    .report-user button:hover {
+      transition: 0.2s;
+      background-color: #00aced; }
 
 .load-huge {
   display: flex;

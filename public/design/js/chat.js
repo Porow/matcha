@@ -15,9 +15,8 @@ function setDate(){
     yr = d.getFullYear();
 
     m = ('0'+d.getMinutes()).slice(-2);
-    if (m > oldm + 29 || boo === 1) {
-        if (boo === 1)
-            oldm = m;
+    if (boo === 1) {
+        oldm = m;
         boo = 0;
         $('<div class="timestamp">' + da + '/' + mon + '/' + yr + '<br>' + d.getHours() + ':' + m + '</div>').appendTo($('.chat-box'));
     }
