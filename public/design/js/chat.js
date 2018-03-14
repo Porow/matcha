@@ -3,7 +3,6 @@ var $messages = $('.chat-box'),
     i = 0;
 
 var m = ('0'+ new Date().getMinutes()).slice(-2);
-var oldm = ('0'+ new Date().getMinutes()).slice(-2);
 var boo = 1;
 
 
@@ -16,7 +15,6 @@ function setDate(){
 
     m = ('0'+d.getMinutes()).slice(-2);
     if (boo === 1) {
-        oldm = m;
         boo = 0;
         $('<div class="timestamp">' + da + '/' + mon + '/' + yr + '<br>' + d.getHours() + ':' + m + '</div>').appendTo($('.chat-box'));
     }
@@ -25,6 +23,7 @@ function setDate(){
 $('#messenger').submit(function () {
     return false;
 });
+
 $("#message").attr("autocomplete", "off");
 
 $(window).on("blur focus", function(e) {
@@ -51,7 +50,12 @@ $('#btn').click(function() {
         $('#message').val('');
         return;}
     setDate();
-    $('.chat-box').append('<div id="msg" class="msg-sent animated bounceInRight">' + text + '</div>');
+    $('.chat-box').append('<div id="msg" class="msg-sent animated bounceInRight">' + '<div class="timestamp-hover">' + d.getHours() + ':' + m + '</div><span>' + text + '</span></div>');
+    $('.msg-sent').hover(function(){
+        $('.timestamp-hover').addClass('hovering');
+    }, function(){
+        $('.timestamp-hover').removeClass('hovering');
+    });
     $('#message').val('');
     var elem = document.getElementById('chat');
     elem.scrollTop = elem.scrollHeight;
@@ -62,11 +66,14 @@ $('#btn').click(function() {
             $.playSound("../design/sounds/new_msg.mp3");
             changeTitle();
         }
-        $('.chat-box').append('<div class="msg-received animated bounceInLeft"><img class="user-sent-pic" src="{{ baseUrl }} ../../users/002.jpg"><span>' + rand + '</span></div>');
+        $('.chat-box').append('<div class="msg-received animated bounceInLeft"><img class="user-sent-pic" src="{{ baseUrl }} ../../users/002.jpg"><span>' + rand + '</span>' + '<div class="timestamp-hover">' + d.getHours() + ':' + m + '</div>' + '</div>');
+        $('.msg-received').hover(function (){
+            $('.timestamp-hover').toggleClass("hovering");
+        });
         elem.scrollTop = elem.scrollHeight;
         setDate();
         }, 1500);
-});
+});x
 
 //Bot auto message
 /*setTimeout(function () {

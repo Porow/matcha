@@ -20,12 +20,13 @@
         </div>
     </header>
     <hr class="no-spc-mgn">
-    <div class="msg-container">
-        <div class="users-list">
+
+    <div class="msg-container"><button id="users-list-btn" class="users-list-btn"><i class="fa fa-angle-double-left"></i></button><button id="users-profile-btn" class="users-profile-btn"><i class="fa fa-angle-double-right"></i></button>
+        <div id="users-list" class="users-list animated slideInLeft">
             <ul>
                 <li class="message-box-current"><img class="users-list-pics" src="{{ baseUrl }}/users/002.jpg">
                     <h1>Virginie</h1>
-                    <p>Ah c'est sûr qu'avec tes 5 en maths c'est compliqué 😂 En web tu fais quoi du coup? De gentil petit codage en HTML et CSS pour faire de jolies pages internet ? 😂<br>Je trouve ça grave sympa comme système, tu sens que tu progresses avec ça ! Alors que nous on est là avec nos moyennes à la con, avec des partiels où on triche pour pas avoir à passer aux rattrapages</p>
+                    <p>Ah c'est sûr qu'avec tes 5 en maths c'est compliqué 😂 En web tu fais quoi du coup? De gentil petit codage en HTML et CSS pour faire de jolies pages internet ? 😂 Je trouve ça grave sympa comme système, tu sens que tu progresses avec ça ! Alors que nous on est là avec nos moyennes à la con, avec des partiels où on triche pour pas avoir à passer aux rattrapages</p>
                 </li><hr class="no-spc-mgn">
                 <li class="message-box"><img class="users-list-pics" src="{{ baseUrl }}/users/002.jpg">
                     <h1>Virginie</h1>
@@ -60,21 +61,21 @@
                     <p>Ah c'est sûr qu'avec tes 5 en maths c'est compliqué 😂 En web tu fais quoi du coup? De gentil petit codage en HTML et CSS pour faire de jolies pages internet ? 😂<br>Je trouve ça grave sympa comme système, tu sens que tu progresses avec ça ! Alors que nous on est là avec nos moyennes à la con, avec des partiels où on triche pour pas avoir à passer aux rattrapages</p>
                 </li><hr class="no-spc-mgn"></ul>
             </div>
-        <div class="center-div">
+        <div id="center-div" class="center-div animated slideInRight">
             <div id="chat" class="chat-box">
             </div>
             <hr class="no-spc-mgn">
-            <form id="messenger" action="" method="get" name="messenger">
+            <form id="messenger" action="" method="get" name="messenger" class="send-msg">
                 <input id="message" class="send-msg-box" type="text" placeholder="Envoyez un message..." autofocus>
                 <button id="btn" tabindex="-1" class="send-msg-btn">Envoyer</button>
             </form>
         </div>
-    <div class="user-profile">
-        <div id="slider">
+    <div id="user-profile" class="user-profile animated slideInRight">
+        <div id="slider" class="slider">
             <a href="#" class="control_next"></a>
             <a href="#" class="control_prev"></a>
             <ul id="easyPaginate">
-                <li><img class="user-profile-img" src="{{ baseUrl }}/users/002.jpg"></li>
+                    <li><img class="user-profile-img" src="{{ baseUrl }}/users/002.jpg"></li>
                 <li><img class="user-profile-img" src="{{ baseUrl }}/users/001.jpg"></li>
                 <li><img class="user-profile-img" src="{{ baseUrl }}/users/004.jpg"></li>
                 <li><img class="user-profile-img" src="{{ baseUrl }}/users/008.jpg"></li>
@@ -86,14 +87,14 @@
                 <hr class="no-spc-mgn">
                 <p>Looking for boyfriend or just some good friends (not in that way ya nastyy)
                     <br>French girl!
-                    <br>18 yo. Folle.
-                    <br>SNIPER. La base.
-                    <br>Insta: lareloute78
-                    <br>Très très très très bon public aux blagues nulles ou blagues tout court 🙄
-                    <br>
-                    <br>La photographie, Les tatouages&Les Voyages 🙏<br>
+                    18 yo. Folle.
+                    SNIPER. La base.
+                    Insta: lareloute78
+                    Très très très très bon public aux blagues nulles ou blagues tout court 🙄
 
-                    <br>Avec Tinder fini les pannes de cœur! 😂😂( me tapez pas svp..😂)<br>
+                    La photographie, Les tatouages&Les Voyages 🙏<br>
+
+                    Avec Tinder fini les pannes de cœur! 😂😂( me tapez pas svp..😂)<br>
                     <br>French girl!
                     <br>18 yo. Folle.
                     <br>SNIPER. La base.
@@ -106,7 +107,7 @@
                     <br>Ps : Lomepal fait un concert le jour de mon anniversaire... Qui vient avec moi?</p>
                 <hr class="no-spc-mgn">
                 <h1 class="profile-title">Instagram</h1>
-                <hr>
+                <hr class="no-spc-mgn">
                 <div class="report-user">
                 <button>Supprimer</button><button>Bloquer</button><button>Signaler</button></div>
             </div>

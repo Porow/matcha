@@ -2558,4 +2558,19 @@ app.ready(function(){
             match = 0;
         });
     }
+    if (currentPath == "/messages")
+    {
+        $('#users-list-btn').click(function () {
+            $("#center-div").toggle();
+            $("#users-list").toggleClass("usr-lst-mbl");
+            $('#users-profile-btn').toggle();
+        });
+        $('#users-profile-btn').click(function () {
+            $("#center-div").toggle();
+            $("#users-list-btn").toggle();
+            $("#user-profile").toggleClass("usr-prof-mbl");
+            $("#user-profile").toggle();
+            $("#slider").toggle();
+        });
+    }
 });

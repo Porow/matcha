@@ -1,11 +1,12 @@
 (function($){
     $.fn.easyPaginate = function (options) {
+        var slidewidth = document.getElementsByClassName("user-profile-img").offsetWidth;
         var defaults = {
             paginateElement: 'li',
             hashPage: 'page',
             elementsPerPage: 10,
             effect: 'default',
-            slideOffset: 200,
+            slideOffset: slidewidth,
             firstButton: true,
             firstButtonText: '<<',
             lastButton: true,
